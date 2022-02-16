@@ -15,9 +15,6 @@ class Author(models.Model):
         verbose_name = '作者'
         verbose_name_plural = verbose_name
 
-    def __str__(self):
-        return self.name
-
 
 # 博客
 class Article(models.Model):
@@ -32,9 +29,6 @@ class Article(models.Model):
         verbose_name = '博客'
         verbose_name_plural = verbose_name
 
-    def __str__(self):
-        return self.title
-
 
 # 标签
 class Tag(models.Model):
@@ -44,6 +38,3 @@ class Tag(models.Model):
         db_table = 'blog_tag'
         verbose_name = '标签'
         verbose_name_plural = verbose_name
-
-    def __str__(self):
-        return self.name
