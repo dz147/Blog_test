@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^admin/$', admin.site.urls),
     url(r'^index/$', views.first_def),
     url(r'^author/add/$', views.created),
+    url(r'^blog/info/save/$', views.save_info),
+    url(r'^get/articles/$', views.query_info_test),
 ]
