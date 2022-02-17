@@ -63,11 +63,26 @@ def save_info(request):
 
 
 def query_info_test(request):
-    arts = Article.objects.all().prefetch_related('tags')[:3]
-    for art in arts:
-        print(art.title, art.tags.all())
+    lis = []
+    arts = Article.objects.all().prefetch_related('tags')[:10]
+
+    for ar in arts:
+        print(type(ar.tags))
+        tags = []
+        for tag in ar.tags.all():
+            tags.append({'name': tag.name})
+
+        lis.append({
+            'id': ar.id,
+            'title': ar.title,
+            'author': Author.objects.get(id=ar.author.id).name,
+            'content': ar.content,
+            'score': ar.score,
+            'tags': tags
+        })
+
     data_list = serializers.serialize("json", arts)
-    return response_success('message', data_list=json.loads(data_list))
+    return response_success('message', data_list=lis)
 
 
 def response_success(message, data=None, data_list=None):
