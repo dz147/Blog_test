@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url
 from django.urls import path, re_path
+from Controller import MyController
+from django.views.generic.base import RedirectView
 
 from Blog import views
 
@@ -25,4 +27,7 @@ urlpatterns = [
     url(r'^author/add/$', views.created),
     url(r'^blog/info/save/$', views.save_info),
     url(r'^get/articles/$', views.query_info_test),
+    url(r'^get/first/views/$', MyController.MyView.as_view()),
+    url(r'^get/info/views/$', MyController.MyView.as_view(), name='get_info'),
+    url(r'^go-to-jd/$', RedirectView.as_view(url='https://www.jd.com')),
 ]
